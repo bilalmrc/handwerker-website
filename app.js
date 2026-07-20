@@ -16,6 +16,7 @@
       return;
     }
 
+    // Versatz je Gruppe vorab setzen, damit CSS die Staffelung macht
     var groups = document.querySelectorAll('[data-stagger]');
     for (var g = 0; g < groups.length; g++) {
       var step = parseInt(groups[g].getAttribute('data-stagger'), 10) || 90;
@@ -41,11 +42,13 @@
 
     for (var n = 0; n < pending.length; n++) io.observe(pending[n]);
 
+    // Rückfallebene: löst der Observer mal nicht aus, bliebe der Inhalt
+    // dauerhaft auf opacity 0 — also unsichtbar, ohne Fehlermeldung.
+    // Lieber ohne Animation zeigen als gar nicht.
     function sweep() {
       for (var i = pending.length - 1; i >= 0; i--) {
         var r = pending[i].getBoundingClientRect();
-        var inView = r.top < window.innerHeight * 0.95 && r.bottom > 0;
-        if (inView) {
+        if (r.top < window.innerHeight * 0.95 && r.bottom > 0) {
           io.unobserve(pending[i]);
           show(pending[i]);
         }
@@ -60,6 +63,7 @@
     }, { passive: true });
     window.addEventListener('resize', sweep, { passive: true });
 
+    // Die ersten 15s zusätzlich pollen, fängt späte Layoutverschiebungen ab
     var ticks = 0;
     var timer = setInterval(function () {
       sweep();
@@ -103,7 +107,7 @@
       function frame(now) {
         if (t0 === null) t0 = now;
         var p = Math.min((now - t0) / dur, 1);
-        var eased = 1 - Math.pow(1 - p, 3);
+        var eased = 1 - Math.pow(1 - p, 3);   // easeOutCubic
         el.textContent = Math.round(target * eased) + suffix;
         if (p < 1) requestAnimationFrame(frame);
       }
@@ -129,6 +133,8 @@
     for (var j = 0; j < nums.length; j++) io.observe(nums[j]);
   }
 
+  // Header, Fortschrittsbalken und Anrufleiste hängen alle am Scrollstand,
+  // deshalb ein gemeinsamer Handler statt drei einzelnen
   function initScrollUI() {
     var header = document.querySelector('.site-header');
     var bar    = document.querySelector('.progress');
@@ -146,6 +152,7 @@
         bar.style.transform = 'scaleX(' + (max > 0 ? y / max : 0) + ')';
       }
 
+      // Anrufleiste erst nach dem Hero — vorher steht der Button ohnehin im Bild
       if (call) {
         var trigger = hero ? hero.offsetHeight * 0.7 : 400;
         call.classList.toggle('is-visible', y > trigger);
@@ -167,6 +174,7 @@
 
   function initCardGlow() {
     if (reduced) return;
+    // auf Touch sinnlos, dort gibt es keinen Zeiger zum Folgen
     if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
 
     var cards = document.querySelectorAll('.card');
@@ -195,6 +203,7 @@
       targets.push(section);
     }
 
+    // rootMargin oben um die Headerhöhe versetzt, sonst schaltet es zu früh
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         var link = map[entry.target.id];
@@ -209,6 +218,7 @@
     for (var t = 0; t < targets.length; t++) io.observe(targets[t]);
   }
 
+  // immer nur eine Antwort offen lassen
   function initFaq() {
     var all = document.querySelectorAll('.faq details');
     for (var i = 0; i < all.length; i++) {
@@ -221,6 +231,7 @@
     }
   }
 
+  // Demo: das Formular hat noch keinen Empfangsweg, siehe README
   function initFormDemo() {
     var form = document.querySelector('.form');
     if (!form) return;

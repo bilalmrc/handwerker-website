@@ -8,6 +8,7 @@
 <meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#060d18">
 <link rel="stylesheet" href="style.css">
+<!-- muss vor dem Rendern laufen, sonst blitzen die Inhalte kurz auf -->
 <script>document.documentElement.className += ' js';</script>
 </head>
 <body>
@@ -15,6 +16,7 @@
 <a class="skip-link" href="#main">Zum Inhalt springen</a>
 <div class="progress" aria-hidden="true"></div>
 
+<!-- Demo-Hinweis: bei einem echten Kundenprojekt entfaellt dieser Block -->
 <div class="demo-bar">
   <strong>Demo-Website.</strong> Fiktiver Beispielbetrieb zu Präsentationszwecken — kein reales Unternehmen, alle Angaben sind Platzhalter.
 </div>
@@ -46,6 +48,7 @@
 
 <main id="main">
 
+  <!-- Hero -->
   <section class="hero" id="top">
     <div class="hero__aura" aria-hidden="true"><span></span><span></span><span></span></div>
     <div class="hero__grid" aria-hidden="true"></div>
@@ -92,6 +95,7 @@
     </a>
   </section>
 
+  <!-- Laufband -->
   <div class="ticker" aria-hidden="true">
     <div class="ticker__track">
       <span>Elektroinstallation</span>
@@ -113,6 +117,7 @@
     </div>
   </div>
 
+  <!-- Leistungen -->
   <section class="section" id="leistungen">
     <div class="wrap">
       <div class="section-head" data-reveal>
@@ -209,6 +214,7 @@
     </div>
   </section>
 
+  <!-- Ablauf -->
   <section class="section section--alt" id="ablauf">
     <div class="wrap">
       <div class="section-head" data-reveal>
@@ -242,6 +248,7 @@
     </div>
   </section>
 
+  <!-- Referenzen -->
   <section class="section" id="referenzen">
     <div class="wrap">
       <div class="section-head" data-reveal>
@@ -344,6 +351,7 @@
     </div>
   </section>
 
+  <!-- FAQ -->
   <section class="section" id="faq">
     <div class="wrap wrap--narrow">
       <div class="section-head" data-reveal>
@@ -391,6 +399,7 @@
     </div>
   </section>
 
+  <!-- Kontakt -->
   <section class="section section--alt" id="kontakt">
     <div class="wrap">
       <div class="contact">
@@ -420,6 +429,7 @@
           </ul>
         </div>
 
+        <!-- action bewusst leer, solange kein Empfangsweg feststeht -->
         <form class="form" action="#" method="post" data-reveal="right">
           <div class="field">
             <label for="name">Name</label>

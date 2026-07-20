@@ -1,3 +1,5 @@
+/* Farben, Abstaende und Schatten zentral - fuer ein neues Kundenprojekt
+   reichen die --brand-* und --accent Werte hier oben. */
 :root {
   --brand-900: #060d18;
   --brand-800: #0b1729;
@@ -43,8 +45,11 @@
   --font: "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-quote: Georgia, "Times New Roman", serif;
 
+  /* feine Koernung als Data-URI statt Bilddatei, spart einen Request */
   --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
 }
+
+/* Reset */
 
 *, *::before, *::after { box-sizing: border-box; }
 
@@ -100,6 +105,8 @@ img { height: auto; }
 }
 .demo-bar strong { color: #fff; }
 
+/* Typografie */
+
 h1, h2, h3, h4 {
   margin: 0 0 .5em;
   font-weight: 800;
@@ -144,6 +151,8 @@ a { color: var(--brand-500); text-underline-offset: .18em; }
 .hero .eyebrow { color: var(--accent); }
 .hero .eyebrow[data-num]::after { color: rgb(255 255 255 / 45%); }
 
+/* Layout */
+
 .wrap { width: 100%; max-width: var(--wrap); margin-inline: auto; padding-inline: var(--gutter); }
 .wrap--narrow { max-width: var(--wrap-narrow); }
 
@@ -166,6 +175,8 @@ a { color: var(--brand-500); text-underline-offset: .18em; }
 .section-head { max-width: 60ch; margin-bottom: clamp(2.75rem, 5vw, 4.5rem); }
 .section-head p { color: var(--ink-soft); font-size: 1.0625rem; }
 .section--dark .section-head p { color: rgb(255 255 255 / 68%); }
+
+/* Animationen */
 
 @keyframes rise {
   from { opacity: 0; transform: translate3d(0, 26px, 0); }
@@ -199,6 +210,8 @@ a { color: var(--brand-500); text-underline-offset: .18em; }
   50%      { opacity: 1; }
 }
 
+/* Ausgangszustand nur wenn JS laeuft - ohne die Klasse js auf <html>
+   bliebe der Inhalt sonst dauerhaft unsichtbar. */
 .js [data-reveal] {
   opacity: 0;
   transform: translate3d(0, 28px, 0);
@@ -233,6 +246,8 @@ a { color: var(--brand-500); text-underline-offset: .18em; }
   background: linear-gradient(90deg, var(--accent), var(--accent-200));
   pointer-events: none;
 }
+
+/* Buttons */
 
 .btn {
   position: relative; overflow: hidden;
@@ -288,6 +303,8 @@ a { color: var(--brand-500); text-underline-offset: .18em; }
 .btn--outline:hover { border-color: var(--brand-800); background: #fff; }
 
 .btn--sm { padding: .7rem 1.3rem; font-size: .9375rem; }
+
+/* Kopfbereich */
 
 .site-header {
   position: sticky; top: 0; z-index: 100;
@@ -364,6 +381,8 @@ a { color: var(--brand-500); text-underline-offset: .18em; }
   .nav .btn span { display: none; }
   .nav .btn { padding: .7rem .9rem; }
 }
+
+/* Hero */
 
 .hero {
   position: relative; isolation: isolate; overflow: hidden;
@@ -447,6 +466,8 @@ a { color: var(--brand-500); text-underline-offset: .18em; }
 }
 @media (max-width: 900px) { .hero__scroll { display: none; } }
 
+/* Laufband - der Track enthaelt die Eintraege doppelt, damit der Sprung
+   bei translateX(-50%) am Schleifenende nicht auffaellt. */
 .ticker {
   overflow: hidden; padding-block: 1.15rem;
   background: var(--brand-800); color: rgb(255 255 255 / 46%);
@@ -467,6 +488,8 @@ a { color: var(--brand-500); text-underline-offset: .18em; }
   content: ""; width: 5px; height: 5px; border-radius: 50%;
   background: var(--accent); opacity: .75;
 }
+
+/* Leistungen */
 
 .cards {
   display: grid; gap: 1.5rem;
@@ -535,6 +558,8 @@ a { color: var(--brand-500); text-underline-offset: .18em; }
 }
 .card:hover .card__no { opacity: 1; color: var(--accent-600); }
 
+/* Kennzahlen */
+
 .stats {
   display: grid; gap: 2.5rem 1.5rem;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -562,6 +587,8 @@ a { color: var(--brand-500); text-underline-offset: .18em; }
   letter-spacing: .13em; text-transform: uppercase;
   color: rgb(255 255 255 / 52%);
 }
+
+/* Ablauf */
 
 .steps {
   position: relative;
@@ -619,6 +646,8 @@ a { color: var(--brand-500); text-underline-offset: .18em; }
 .step h3 { margin-bottom: .35rem; }
 .step p { color: var(--ink-soft); font-size: .9375rem; }
 
+/* Referenzen */
+
 .gallery {
   display: grid; gap: 1.25rem;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -667,6 +696,8 @@ a { color: var(--brand-500); text-underline-offset: .18em; }
   font-size: .8125rem; color: rgb(255 255 255 / 55%);
 }
 
+/* Stimmen */
+
 .quotes {
   display: grid; gap: 1.5rem;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -712,6 +743,8 @@ a { color: var(--brand-500); text-underline-offset: .18em; }
 .stars { display: flex; gap: .15rem; margin-bottom: .9rem; color: var(--accent); }
 .stars svg { width: 1rem; height: 1rem; }
 
+/* FAQ */
+
 .faq { display: grid; gap: .75rem; }
 
 .faq details {
@@ -755,6 +788,7 @@ a { color: var(--brand-500); text-underline-offset: .18em; }
 .faq details[open] summary i::after { background: #241a05; }
 .faq details[open] summary i::after { transform: translate(-50%, -50%) rotate(0deg); }
 
+/* Hoehenanimation ueber grid-template-rows, braucht keine feste Pixelhoehe */
 .faq__body {
   display: grid; grid-template-rows: 0fr;
   transition: grid-template-rows .45s var(--ease-out);
@@ -765,6 +799,8 @@ a { color: var(--brand-500); text-underline-offset: .18em; }
   padding: 0 1.6rem 1.5rem;
   color: var(--ink-soft); font-size: .9688rem;
 }
+
+/* Kontakt */
 
 .contact {
   display: grid; gap: clamp(2.5rem, 5vw, 4rem);
@@ -829,6 +865,8 @@ a { color: var(--brand-500); text-underline-offset: .18em; }
 
 .form__note { font-size: .8125rem; color: var(--ink-faint); margin: 0; }
 
+/* Fusszeile */
+
 .site-footer {
   position: relative; overflow: hidden;
   background: var(--brand-900); color: rgb(255 255 255 / 62%);
@@ -865,6 +903,7 @@ a { color: var(--brand-500); text-underline-offset: .18em; }
   animation: spark 2.4s ease-in-out infinite;
 }
 
+/* Anrufleiste, nur auf schmalen Bildschirmen */
 .call-bar {
   position: fixed; inset: auto 0 0 0; z-index: 110;
   display: none; gap: .6rem; padding: .7rem;
@@ -882,6 +921,8 @@ a { color: var(--brand-500); text-underline-offset: .18em; }
   .call-bar { display: flex; }
   body { padding-bottom: 4.75rem; }
 }
+
+/* Rechtstexte */
 
 .legal { max-width: 74ch; }
 .legal h1 { font-size: clamp(2rem, 1.5rem + 2vw, 2.85rem); margin-bottom: 1.5rem; }
